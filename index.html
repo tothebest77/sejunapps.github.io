@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SEJUN APPS</title>
+
+    <meta name="description"
+          content="SEJUN APPS - Simple and useful applications for everyday life.">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --background: #f6f8fb;
+            --surface: #ffffff;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --accent: #2563eb;
+            --border: #e5e7eb;
+        }
+
+        body {
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                "Noto Sans KR",
+                Arial,
+                sans-serif;
+
+            background: var(--background);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        /* -------------------------
+           Header
+        ------------------------- */
+
+        header {
+            height: 64px;
+            background: rgba(255, 255, 255, 0.92);
+            border-bottom: 1px solid var(--border);
+
+            display: flex;
+            align-items: center;
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+
+            backdrop-filter: blur(10px);
+        }
+
+        .header-inner {
+            width: min(1100px, calc(100% - 40px));
+            margin: 0 auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        nav {
+            display: flex;
+            gap: 24px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        /* -------------------------
+           Main
+        ------------------------- */
+
+        main {
+            width: min(1100px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        /* -------------------------
+           Hero / Clock
+        ------------------------- */
+
+        .hero {
+            min-height: 440px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(34px, 6vw, 58px);
+            letter-spacing: -1.5px;
+            margin-bottom: 18px;
+        }
+
+        .hero-description {
+            color: var(--text-secondary);
+            font-size: 17px;
+            margin-bottom: 48px;
+        }
+
+        .date {
+            color: var(--text-secondary);
+            font-size: 17px;
+            margin-bottom: 8px;
+        }
+
+        .clock {
+            font-size: clamp(46px, 9vw, 78px);
+            font-weight: 300;
+
+            font-variant-numeric: tabular-nums;
+
+            letter-spacing: 2px;
+        }
+
+        .timezone {
+            margin-top: 8px;
+            color: #9ca3af;
+            font-size: 13px;
+        }
+
+        /* -------------------------
+           Apps
+        ------------------------- */
+
+        .apps-section {
+            padding: 60px 0 100px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 28px;
+            letter-spacing: -0.5px;
+        }
+
+        .apps-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(260px, 1fr));
+
+            gap: 20px;
+        }
+
+        .app-card {
+            background: var(--surface);
+
+            border: 1px solid var(--border);
+            border-radius: 18px;
+
+            padding: 28px;
+
+            min-height: 180px;
+
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s;
+        }
+
+        .app-card:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.07);
+        }
+
+        .app-icon {
+            width: 48px;
+            height: 48px;
+
+            border-radius: 12px;
+
+            background: #eef2ff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 24px;
+
+            margin-bottom: 20px;
+        }
+
+        .app-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .app-description {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .coming-soon {
+            display: inline-block;
+
+            margin-top: 16px;
+
+            font-size: 12px;
+            color: var(--accent);
+
+            background: #eff6ff;
+
+            padding: 5px 9px;
+            border-radius: 20px;
+        }
+
+        /* -------------------------
+           Footer
+        ------------------------- */
+
+        footer {
+            border-top: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .footer-inner {
+            width: min(1100px, calc(100% - 40px));
+            margin: 0 auto;
+
+            padding: 30px 0;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* -------------------------
+           Mobile
+        ------------------------- */
+
+        @media (max-width: 600px) {
+
+            header {
+                height: 58px;
+            }
+
+            nav {
+                gap: 14px;
+            }
+
+            nav a {
+                font-size: 13px;
+            }
+
+            .hero {
+                min-height: 400px;
+            }
+
+            .hero-description {
+                font-size: 15px;
+                margin-bottom: 40px;
+            }
+
+            .date {
+                font-size: 15px;
+            }
+
+            .clock {
+                letter-spacing: 1px;
+            }
+
+            .apps-section {
+                padding-top: 40px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                gap: 14px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+<header>
+
+    <div class="header-inner">
+
+        <div class="logo">
+            SEJUN APPS
+        </div>
+
+        <nav>
+            <a href="#apps">Apps</a>
+            <a href="privacy/">Privacy</a>
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <!-- Hero -->
+
+    <section class="hero">
+
+        <h1>SEJUN APPS</h1>
+
+        <div class="hero-description">
+            Simple ideas. Useful apps.
+        </div>
+
+        <div id="date" class="date"></div>
+
+        <div id="clock" class="clock">
+            00:00:00
+        </div>
+
+        <div class="timezone">
+            Korea Standard Time · KST
+        </div>
+
+    </section>
+
+
+    <!-- Apps -->
+
+    <section id="apps" class="apps-section">
+
+        <h2 class="section-title">
+            Apps
+        </h2>
+
+        <div class="apps-grid">
+
+            <!-- Sudoku Duel -->
+
+            <div class="app-card">
+
+                <div class="app-icon">
+                    9
+                </div>
+
+                <div class="app-name">
+                    Sudoku Duel
+                </div>
+
+                <div class="app-description">
+                    Enjoy Sudoku and challenge yourself
+                    with a simple and focused puzzle experience.
+                </div>
+
+            </div>
+
+
+            <!-- PlanInOne -->
+
+            <div class="app-card">
+
+                <div class="app-icon">
+                    ✓
+                </div>
+
+                <div class="app-name">
+                    PlanInOne
+                </div>
+
+                <div class="app-description">
+                    Manage schedules, tasks and projects
+                    together in one place.
+                </div>
+
+                <span class="coming-soon">
+                    Coming Soon
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <div class="footer-inner">
+
+        <div>
+            © <span id="year"></span> SEJUN APPS
+        </div>
+
+        <div class="footer-links">
+            <a href="privacy/">Privacy Policy</a>
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+    function updateClock() {
+
+        const now = new Date();
+
+        /*
+         * Date
+         */
+
+        const dateFormatter =
+            new Intl.DateTimeFormat(
+                'ko-KR',
+                {
+                    timeZone: 'Asia/Seoul',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    weekday: 'long'
+                }
+            );
+
+        /*
+         * Time
+         */
+
+        const timeFormatter =
+            new Intl.DateTimeFormat(
+                'ko-KR',
+                {
+                    timeZone: 'Asia/Seoul',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: false
+                }
+            );
+
+        document.getElementById('date').textContent =
+            dateFormatter.format(now);
+
+        document.getElementById('clock').textContent =
+            timeFormatter.format(now);
+    }
+
+
+    /*
+     * Initial display
+     */
+
+    updateClock();
+
+
+    /*
+     * Update every second
+     */
+
+    setInterval(updateClock, 1000);
+
+
+    /*
+     * Copyright year
+     */
+
+    document.getElementById('year').textContent =
+        new Date().getFullYear();
+
+</script>
+
+
+</body>
+</html>
